@@ -17,6 +17,17 @@ export const deleteContacts = createAsyncThunk(
     }
 );
 
+export const addContacts = createAsyncThunk(
+    'contacts/addContacts',
+    async contact => {
+        const response = await axios.post(
+            `https://6507fbcc56db83a34d9b8a97.mockapi.io/contacts`
+        );
+        return response.data;
+    }
+);
+
+
 
 
 
