@@ -6,22 +6,10 @@ import { getContacts } from '../../Redux/selectors';
 import css from "./ContactForm.module.css";
 
 export const ContactForm = () => {
-  // const [name, setName] = useState('');
-  // const [number, setNumber] = useState('');
+
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-
-  //   // onSubmit({ name: name, number: number });
-  //   // reset();
-  // };
-
-  // const reset = () => {
-  //   setName('');
-  //   setNumber('');
-  // };
  const handleSubmit = event => {
     event.preventDefault();
     const newContact = {};
@@ -86,8 +74,3 @@ export const ContactForm = () => {
       </form>
     );
   }
-
-
-// ContactForm.propTypes = {
-//     onSubmit: PropTypes.func.isRequired,
-// };
