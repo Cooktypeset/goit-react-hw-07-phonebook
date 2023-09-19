@@ -1,37 +1,38 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { deleteContact } from '../../Redux/ContactsSlice/ContactsSlice';
-import { getContacts } from '../../Redux/selectors';
-import { getFilter } from '../../Redux/selectors';
+
+import { selectVisibleContacts } from '../../Redux/selectors';
+import { fetchContacts, deleteContacts } from 'Redux/operations';
 import css from './ContactList.module.css'
 
+const Contacts = () => {
+  const dispatch = useDispatch();
 
-const getContactList = (contacts, statusFilter) => {
-  if (statusFilter.value !== '') {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(statusFilter.value.toLowerCase())
-    );
-  }
-
-  return contacts;
+  const contacts = useSelector(selectVisibleContacts);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+  return (
+    <div>
+      <ul>
+        {contacts?.map(({ id, name, phone }) => {
+          return (
+            <li key={id} className={css.contactItem}>
+              <p>
+                {name} {phone}
+              </p>
+              <button
+                className={css.listContainer}
+                onClick={() => dispatch(deleteContacts(id))}>
+                delete
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
 };
 
-export const ContactList = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const filterUser = useSelector(getFilter);
-  const contactsList = getContactList(contacts, filterUser);
-
-  const handleDelete = () => dispatch(deleteContact(contacts.id));
-    return (
-        <ul className={css.listContainer}>
-            {contactsList.map(({ id, name, number }) =>
-            (<li className={css.contactItem} key={id}>
-                <p>{name}:{number}</p> 
-                <button className={css.btnDelete} type ='button' onClick={() => handleDelete(id)}></button>
-            </li>))}
-        </ul>
-    )
-}
-
-
+export default Contacts
