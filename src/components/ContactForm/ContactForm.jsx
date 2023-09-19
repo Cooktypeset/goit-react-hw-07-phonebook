@@ -32,7 +32,10 @@ export const ContactForm = () => {
       event.currentTarget.reset();
       return;
     }
-    dispatch(addContacts(newContact.name, newContact.number));
+   dispatch(addContacts({
+     name: newContact.name,
+     phone: newContact.number
+   }));
     event.currentTarget.reset();
   };
 
