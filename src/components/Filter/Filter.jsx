@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { filterChange } from '../../Redux/FilterSlice/FilterSlice';
+import { setFilter } from '../../Redux/FilterSlice/FilterSlice';
 import css from "./Filter.module.css";
 
 
 export const Filter = () => {
     const dispatch = useDispatch();
     const handleChange = event => {
-        dispatch(filterChange(event.currentTarget.value));
+        dispatch(setFilter(event.currentTarget.value));
     }
     return (
         <>

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { addContact } from '../../Redux/ContactsSlice/ContactsSlice';
+import { addContacts } from 'Redux/operations';
 import {  selectContacts } from '../../Redux/selectors';
 
 import css from "./ContactForm.module.css";
@@ -32,7 +32,7 @@ export const ContactForm = () => {
       event.currentTarget.reset();
       return;
     }
-    dispatch(addContact(newContact.name, newContact.number));
+    dispatch(addContacts(newContact.name, newContact.number));
     event.currentTarget.reset();
   };
 
