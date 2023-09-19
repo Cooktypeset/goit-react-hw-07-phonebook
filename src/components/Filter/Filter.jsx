@@ -9,9 +9,12 @@ export const Filter = () => {
         dispatch(setFilter(event.currentTarget.value));
     }
     return (
-        <>
-            <h5 className={css.titlefilter}>Find contacts by name</h5>
-            <input className={css.inputfilter} type ='text' onChange = {handleChange}/>
-        </>
+         <div>
+      <input
+        className={css.inputfilter}
+        type="text"
+        onChange={handleChange}
+      />
+    </div>
     )
 }
